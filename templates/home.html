@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Crypto Exchange – Home</h1>
+  <p>Welcome! Go to <a href="{% url 'market:currency_list' %}">Currencies</a> or your <a href="{% url 'wallets:dashboard' %}">Wallets</a>.</p>
+{% endblock %}

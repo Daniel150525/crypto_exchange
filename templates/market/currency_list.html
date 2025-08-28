@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Currencies</h1>
+  <ul>
+    {% for c in currencies %}
+      <li><a href="{% url 'market:currency_detail' c.pk %}">{{ c.symbol }}</a> – {{ c.name }}</li>
+    {% empty %}
+      <li>No currencies yet.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>My Wallets</h2>
+<ul>
+  {% for w in wallets %}
+    <li>
+      <a href="{% url 'wallet-detail' w.pk %}">
+        {{ w.currency.symbol }} — {{ w.balance }}
+      </a>
+    </li>
+  {% empty %}
+    <li>No wallets yet.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

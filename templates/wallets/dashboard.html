@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>My wallets</h1>
+
+  <p>
+    <a href="{% url 'wallets:deposit' %}">Deposit</a> |
+    <a href="{% url 'wallets:withdraw' %}">Withdraw</a>
+  </p>
+
+  <!-- Favorite currencies section -->
+  <h2>Favorite currencies</h2>
+  <ul>
+    {% for c in favorite_currencies %}
+      <li>{{ c.name }} ({{ c.symbol }})</li>
+    {% empty %}
+      <li>No favorite currencies set.</li>
+    {% endfor %}
+  </ul>
+
+  <!-- Wallet balances -->
+  <h2>Your wallets</h2>
+  <ul>
+    {% for w in wallets %}
+      <li>
+        {{ w.currency.symbol }} — balance: {{ w.balance }}
+        | <a href="{% url 'market:make-trade' w.id %}">Trade</a>
+      </li>
+    {% empty %}
+      <li>No wallets yet.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

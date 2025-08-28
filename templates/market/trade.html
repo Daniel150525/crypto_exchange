@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Trade — Wallet {{ wallet.currency.symbol }}</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Execute</button>
+</form>
+{% endblock %}
