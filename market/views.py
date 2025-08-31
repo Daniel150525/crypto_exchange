@@ -64,11 +64,16 @@ class TradeView(FormView):
 
 @method_decorator(login_required, name="dispatch")
 class TradeHistoryView(ListView):
-    """Zobrazuje historii obchodů přihlášeného uživatele (seřazeno od nejnovějších)."""    template_name = "market/trade_history.html"  # <- změna
+    """
+    Zobrazuje historii obchodů přihlášeného uživatele (seřazeno od nejnovějších).
+    """
+    template_name = "market/trade_history.html"
     context_object_name = "trades"
 
     def get_queryset(self):
-        return (Trade.objects
-                .filter(wallet__owner=self.request.user)
-                .select_related("currency", "wallet")
-                .order_by("-created_at"))
+        return (
+            Trade.objects
+            .filter(wallet__owner=self.request.user)
+            .select_related("currency", "wallet")
+            .order_by("-created_at")
+        )
